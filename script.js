@@ -14,12 +14,12 @@ function fillContainer(container, squaresPerSide = 16) {
 }
 
 function toggleColor(square) {
-    square.style.backgroundColor === "black" ? square.style.backgroundColor = "yellow"
+    square.style.backgroundColor === "black" ? square.style.backgroundColor = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`
     : square.style.backgroundColor = "black";
     }
 
 function getUserLayout() {
-    let layout = parseInt(prompt("How many rows and columns do you want to display? (max 100)", "16"));
+    let layout = parseInt(prompt("How many rows and columns do you want to display? \n Type a number between 1-100", "16"));
     if (!layout || layout > 100 || layout < 1) {
         return;
     }
@@ -48,6 +48,9 @@ function prepareGrid(container,layout) {
 function addButtonEventListeners() {
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => square.addEventListener("mouseover", () => toggleColor(square)));
+}
+function getRandomColor() {
+    return Math.floor(Math.random() * 255 + 1);
 }
 
 const container = document.querySelector(".container");
